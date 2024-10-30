@@ -25,7 +25,7 @@ def main():
             date = str(image_date[i].split(" ")[0]).replace('-', '/')
             id = image_id[i]
             url = f'https://api.nasa.gov/EPIC/archive/natural/{date}/png/{id}.png?api_key=gdPzfbvhAsScM7wQyZRkUkMllJEmTzaS5Br4uPii'
-            download_image(url,"epic",f'NASA_{i}{get_links_ext(url)}')
+            download_image(url,"images",f'NASA_EPIC_{i}{get_links_ext(url)}')
     except requests.exceptions.RequestException as err:
         print(f'Ошибка при выполнении запроса: {err}')
 

@@ -24,7 +24,7 @@ def main():
         count = 0
         for link in links:
             count += 1
-            download_image(link, 'images_NASA', f'NASA_{count}{get_links_ext(link)}')
+            download_image(link, 'images', f'NASA_APOD_{count}{get_links_ext(link)}')
     except requests.exceptions.RequestException as err:
         print(f'Ошибка при выполнении запроса: {err}')
 
