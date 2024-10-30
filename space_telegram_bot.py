@@ -33,4 +33,4 @@ if __name__ == "__main__":
             time.sleep(waiting_time)
 
 
-# bot.send_message(chat_id=chat_id, text="Привет! Это сообщение из Python.")
+
