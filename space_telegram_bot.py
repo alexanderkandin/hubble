@@ -15,7 +15,7 @@ chat_id = "@starsspacesuper"
 directory = 'images'
 filesindir = os.listdir(directory)
 parser = argparse.ArgumentParser()
-parser.add_argument("time", nargs="?", default=60, type=int)
+parser.add_argument("time", nargs="?", default=14400, type=int)
 waiting_time = parser.parse_args(sys.argv[1:]).time
 
 if __name__ == "__main__":
