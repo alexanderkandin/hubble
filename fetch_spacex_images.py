@@ -20,8 +20,8 @@ def main():
         for link in links:
             count += 1
             download_image(link, 'images', f'space_{count}{get_links_ext(link)}')
-    except requests.exceptions.RequestException as err:
-        print(f"Ошибка при выполнении запроса: {err}")
+    except requests.exceptions.HTTPError as http_err:
+        print(f'HTTP ошибка: {http_err}')
 
 
 if __name__  == "__main__":
