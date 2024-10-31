@@ -15,7 +15,7 @@ def main():
             raise ValueError("Переменная окружения 'API_KEY' не найдена.")
         payload = {
             "api_key": api_key,
-            'count': '5'
+            'number_of_images': '5'
         }
         response = requests.get('https://api.nasa.gov/planetary/apod', params=payload)
         response.raise_for_status()
@@ -25,8 +25,8 @@ def main():
         for link in links:
             count += 1
             download_image(link, 'images', f'NASA_APOD_{count}{get_links_ext(link)}')
-    except requests.exceptions.RequestException as err:
-        print(f'Ошибка при выполнении запроса: {err}')
+    except requests.exceptions.HTTPError as http_err:
+        print(f'HTTP ошибка: {http_err}')
 
 
 if __name__  == "__main__":
