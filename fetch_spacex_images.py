@@ -7,7 +7,7 @@ import sys
 def main():
     try:
         parser = argparse.ArgumentParser()
-        parser.add_argument("flight_id", nargs="?", default="latest")
+        parser.add_argument("flight_id", nargs="?", help='Укажите номер полета.', default="latest")
         id = parser.parse_args(sys.argv[1:]).flight_id
         if id == "latest":
             response = requests.get(f'https://api.spacexdata.com/v3/launches/{id}')
