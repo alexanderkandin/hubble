@@ -16,10 +16,8 @@ def main():
         response.raise_for_status()
         spacex_images_data = response.json()
         links = spacex_images_data['links']['flickr']['original']
-        count = 0
-        for link in links:
-            count += 1
-            download_image(link, 'images', f'space_{count}{get_links_ext(link)}')
+        for link_number, link in enumerate(links):
+            download_image(link, 'images', f'space_{link_number}{get_links_ext(link)}')
     except requests.exceptions.HTTPError as http_err:
         print(f'HTTP ошибка: {http_err}')
 
