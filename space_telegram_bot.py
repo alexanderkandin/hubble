@@ -11,7 +11,7 @@ from dotenv import load_dotenv
 load_dotenv()
 TG_API_KEY = os.getenv("TELEGRAM_API_KEY")
 bot = telegram.Bot(token=TG_API_KEY)
-chat_id = "@starsspacesuper"
+tg_chat_id = "@starsspacesuper"
 directory = 'images'
 filesindir = os.listdir(directory)
 parser = argparse.ArgumentParser()
@@ -22,14 +22,14 @@ if __name__ == "__main__":
     for filesindirs in filesindir:
         path = os.path.join(filesindirs)
         file = os.path.join(str(directory), path)
-        bot.send_document(chat_id=chat_id, document=open(file, 'rb'))
+        bot.send_document(chat_id=tg_chat_id, document=open(file, 'rb'))
         time.sleep(waiting_time)
     while True:
         random.shuffle(filesindir)
         for filesindirs in filesindir:
             path = os.path.join(filesindirs)
             file = os.path.join(str(directory), path)
-            bot.send_document(chat_id=chat_id, document=open(file, 'rb'))
+            bot.send_document(chat_id=tg_chat_id, document=open(file, 'rb'))
             time.sleep(waiting_time)
 
 
