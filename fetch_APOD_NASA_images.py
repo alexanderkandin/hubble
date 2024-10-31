@@ -20,7 +20,7 @@ def main():
         response = requests.get('https://api.nasa.gov/planetary/apod', params=payload)
         response.raise_for_status()
         apod_images_data = response.json()
-        links = [item["url"] for item in apod_images_data]
+        links = [link["url"] for link in apod_images_data]
         count = 0
         for link in links:
             count += 1
