@@ -22,8 +22,9 @@ def main():
         for count, image_and_data in enumerate(epic_images_data):
             date = str(image_and_data['date'].split(" ")[0]).replace('-', '/')
             id = image_and_data["image"]
-            url = f'https://api.nasa.gov/EPIC/archive/natural/{date}/png/{id}.png?api_key=gdPzfbvhAsScM7wQyZRkUkMllJEmTzaS5Br4uPii'
-            download_image(url,"images",f'NASA_EPIC_{count}{get_links_ext(url)}')
+            base_url = f'https://api.nasa.gov/EPIC/archive/natural/{date}/png/{id}.png'
+            full_url = requests.get(base_url, params=payload).url
+            download_image(full_url,"images",f'NASA_EPIC_{count}{get_links_ext(full_url)}')
     except requests.exceptions.HTTPError as http_err:
         print(f'HTTP ошибка: {http_err}')
 
