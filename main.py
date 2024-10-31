@@ -1,6 +1,9 @@
 import requests
+import argparse
+import sys
 import os
 import urllib.parse
+from dotenv import load_dotenv
 
 
 def download_image(url_user, folder, name):
@@ -12,9 +15,14 @@ def download_image(url_user, folder, name):
         file.write(response.content)
 
 
-def fetch_spacesx_last_launch(flight_id):
-    id = str(flight_id)
-    response = requests.get(f'https://api.spacexdata.com/v5/launches/{id}')
+def fetch_spacex_launch():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("flight_id", nargs="?", default="latest")
+    id = parser.parse_args(sys.argv[1:]).flight_id
+    if id == "latest":
+        response = requests.get(f'https://api.spacexdata.com/v3/launches/{id}')
+    else:
+        response = requests.get(f'https://api.spacexdata.com/v5/launches/{id}')
     response.raise_for_status()
     launch_data = response.json()
     links = launch_data['links']['flickr']['original']
@@ -25,8 +33,10 @@ def fetch_spacesx_last_launch(flight_id):
 
 
 def get_links_NASA():
+    load_dotenv()
+    api_key = os.getenv("API_KEY")
     payload = {
-        "api_key": "gdPzfbvhAsScM7wQyZRkUkMllJEmTzaS5Br4uPii",
+        "api_key": api_key,
         'count': '5'
     }
     response = requests.get('https://api.nasa.gov/planetary/apod', params=payload)
@@ -48,8 +58,10 @@ def get_links_ext(url):
 
 
 def get_links_EPIC():
+    load_dotenv()
+    api_key = os.getenv("API_KEY")
     payload = {
-        "api_key": "gdPzfbvhAsScM7wQyZRkUkMllJEmTzaS5Br4uPii",
+        "api_key": api_key,
     }
     response = requests.get('https://api.nasa.gov/EPIC/api/natural/images', params=payload)
     response.raise_for_status()
@@ -64,8 +76,7 @@ def get_links_EPIC():
 
 
 def main():
-    get_links_EPIC()
-
+    get_links_NASA()
 
 if __name__ == "__main__":
     main()
