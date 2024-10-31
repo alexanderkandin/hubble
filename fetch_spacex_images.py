@@ -14,8 +14,8 @@ def main():
         else:
             response = requests.get(f'https://api.spacexdata.com/v5/launches/{id}')
         response.raise_for_status()
-        launch_data = response.json()
-        links = launch_data['links']['flickr']['original']
+        spacex_images_data = response.json()
+        links = spacex_images_data['links']['flickr']['original']
         count = 0
         for link in links:
             count += 1

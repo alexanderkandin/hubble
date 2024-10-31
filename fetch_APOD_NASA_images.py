@@ -19,8 +19,8 @@ def main():
         }
         response = requests.get('https://api.nasa.gov/planetary/apod', params=payload)
         response.raise_for_status()
-        launch_data = response.json()
-        links = [item["url"] for item in launch_data]
+        apod_images_data = response.json()
+        links = [item["url"] for item in apod_images_data]
         count = 0
         for link in links:
             count += 1

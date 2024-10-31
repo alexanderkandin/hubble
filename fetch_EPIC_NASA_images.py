@@ -18,9 +18,9 @@ def main():
         }
         response = requests.get('https://api.nasa.gov/EPIC/api/natural/images', params=payload)
         response.raise_for_status()
-        launch_data = response.json()
-        image_id = [item["image"] for item in launch_data]
-        image_date = [item["date"] for item in launch_data]
+        epic_images_data = response.json()
+        image_id = [item["image"] for item in epic_images_data]
+        image_date = [item["date"] for item in epic_images_data]
         for i in range(0, len(image_date)):
             date = str(image_date[i].split(" ")[0]).replace('-', '/')
             id = image_id[i]
