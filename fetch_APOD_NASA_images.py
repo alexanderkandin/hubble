@@ -11,11 +11,12 @@ def main():
     try:
         load_dotenv()
         api_key = os.getenv("NASA_API_KEY")
+        number_of_images = '5'
         if not api_key:
             raise ValueError("Переменная окружения 'NASA_API_KEY' не найдена.")
         payload = {
             "api_key": api_key,
-            'count': '5'
+            'count': number_of_images
         }
         response = requests.get('https://api.nasa.gov/planetary/apod', params=payload)
         response.raise_for_status()
