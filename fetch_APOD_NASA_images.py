@@ -20,8 +20,8 @@ def main():
         }
         response = requests.get('https://api.nasa.gov/planetary/apod', params=payload)
         response.raise_for_status()
-        apod_images_data = response.json()
-        links = [link["url"] for link in apod_images_data]
+        apod_images = response.json()
+        links = [link["url"] for link in apod_images]
         for link_number, link in enumerate(links):
             download_image(link, 'images', f'NASA_APOD_{link_number}{get_links_ext(link)}')
     except requests.exceptions.HTTPError as http_err:

@@ -18,11 +18,11 @@ def main():
         }
         response = requests.get('https://api.nasa.gov/EPIC/api/natural/images', params=payload)
         response.raise_for_status()
-        epic_images_data = response.json()
-        for count, image_and_data in enumerate(epic_images_data):
-            date = str(image_and_data['date'].split(" ")[0]).replace('-', '/')
-            id = image_and_data["image"]
-            base_url = f'https://api.nasa.gov/EPIC/archive/natural/{date}/png/{id}.png'
+        epic_images = response.json()
+        for count, image in enumerate(epic_images):
+            date = str(image['date'].split(" ")[0]).replace('-', '/')
+            image_id = image["image"]
+            base_url = f'https://api.nasa.gov/EPIC/archive/natural/{date}/png/{image_id}.png'
             full_url = requests.get(base_url, params=payload).url
             download_image(full_url,"images",f'NASA_EPIC_{count}{get_links_ext(full_url)}')
     except requests.exceptions.HTTPError as http_err:
