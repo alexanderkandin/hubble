@@ -14,8 +14,10 @@ bot = telegram.Bot(token=TG_API_KEY)
 tg_chat_id = "@starsspacesuper"
 directory = 'images'
 filesindir = os.listdir(directory)
-parser = argparse.ArgumentParser()
-parser.add_argument("time", nargs="?", default=14400, type=int)
+parser = argparse.ArgumentParser(
+                    description='Отправляет фото с телеграм канал. Укажите время задержки отправки фото. Значение по умолчанию 4 часа',
+                    )
+parser.add_argument("time", nargs="?", help='Время задержки отправки фото.', default=14400, type=int)
 waiting_time = parser.parse_args(sys.argv[1:]).time
 
 if __name__ == "__main__":
