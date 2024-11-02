@@ -23,10 +23,9 @@ def main():
             date = str(image['date'].split(" ")[0]).replace('-', '/')
             image_id = image["image"]
             base_url = f'https://api.nasa.gov/EPIC/archive/natural/{date}/png/{image_id}.png'
-            full_url = requests.get(base_url, params=payload).url
-            download_image(full_url,"images",f'NASA_EPIC_{count}{get_links_ext(full_url)}')
+            download_image(base_url,"images",f'NASA_EPIC_{count}.png',payload)
     except requests.exceptions.HTTPError as http_err:
-        print(f'HTTP ошибка: {http_err}')
+        print(f'Вы ввели неверный токен: {http_err}')
 
 
 if __name__  == "__main__":
