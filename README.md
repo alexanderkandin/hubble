@@ -19,7 +19,7 @@
 
 1. Установите необходимые пакеты:
    ```bash
-   pip install python-telegram-bot python-dotenv
+   pip install -r requirements.txt
    ```
 
 2. Создайте файл `.env` в корневой директории и добавьте свой API-ключ телеграм-бота:
@@ -62,7 +62,7 @@ python space_telegram_bot.py 2
 1. Клонируйте репозиторий и перейдите в его папку.
 2. Установите необходимые зависимости:
    ```bash
-   pip install requests python-dotenv
+   pip install -r requirements.txt
    ```
 3. Создайте файл `.env` в корне проекта и добавьте ваш ключ API:
    ```plaintext
@@ -100,7 +100,7 @@ python fetch_APOD_NASA_images.py
 1. Клонируйте репозиторий и перейдите в его папку.
 2. Установите необходимые зависимости:
    ```bash
-   pip install requests python-dotenv
+   pip install -r requirements.txt
    ```
 3. Создайте файл `.env` в корне проекта и добавьте ваш ключ API:
    ```plaintext
@@ -139,7 +139,7 @@ python fetch_EPIC_NASA_images.py
 1. Клонируйте репозиторий и перейдите в его папку.
 2. Установите необходимые зависимости:
    ```bash
-   pip install requests
+   pip install -r requirements.txt
    ```
 3. Убедитесь, что файлы `download_images.py` и `links_ext.py` находятся в одном каталоге с основным скриптом.
 
