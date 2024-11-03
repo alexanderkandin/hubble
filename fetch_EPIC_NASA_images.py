@@ -25,7 +25,9 @@ def main():
             base_url = f'https://api.nasa.gov/EPIC/archive/natural/{date}/png/{image_id}.png'
             download_image(base_url,"images",f'NASA_EPIC_{count}.png',payload)
     except requests.exceptions.HTTPError as http_err:
-        print(f'Вы ввели неверный токен: {http_err}')
+        print(f"Ошибка HTTP: {http_err}. Проверьте параметры запроса и доступность сервера.")
+    except requests.exceptions.ConnectionError:
+        print("Ошибка соединения. Проверьте подключение к интернету или доступность сервера.")
 
 
 if __name__  == "__main__":

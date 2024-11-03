@@ -25,8 +25,9 @@ def main():
         for link_number, link in enumerate(links):
             download_image(link, 'images', f'NASA_APOD_{link_number}{get_links_ext(link)}')
     except requests.exceptions.HTTPError as http_err:
-        print(f'Вы ввели неверный токен: {http_err}')
-
+        print(f"Ошибка HTTP: {http_err}. Проверьте параметры запроса и доступность сервера.")
+    except requests.exceptions.ConnectionError:
+        print("Ошибка соединения. Проверьте подключение к интернету или доступность сервера.")
 
 if __name__  == "__main__":
     main()
