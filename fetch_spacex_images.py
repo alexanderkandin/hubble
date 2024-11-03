@@ -11,10 +11,7 @@ def main():
                     )
         parser.add_argument("flight_id", nargs="?", help='Укажите номер полета.', default="latest")
         flight_id = parser.parse_args(sys.argv[1:]).flight_id
-        if flight_id == "latest":
-            response = requests.get(f'https://api.spacexdata.com/v5/launches/{flight_id}')
-        else:
-            response = requests.get(f'https://api.spacexdata.com/v5/launches/{flight_id}')
+        response = requests.get(f'https://api.spacexdata.com/v5/launches/{flight_id}')
         response.raise_for_status()
         spacex_images = response.json()
         links = spacex_images['links']['flickr']['original']
