@@ -5,11 +5,11 @@ from links_ext import get_links_ext
 import sys
 
 def main():
+    parser = argparse.ArgumentParser(
+                description='Загружает фото с сайта Spacex. Укажите номер полета, если его не указать, то загрузятся фото с последнего полета',
+                )
+    parser.add_argument("flight_id", nargs="?", help='Укажите номер полета.', default="latest")
     try:
-        parser = argparse.ArgumentParser(
-                    description='Загружает фото с сайта Spacex. Укажите номер полета, если его не указать, то загрузятся фото с последнего полета',
-                    )
-        parser.add_argument("flight_id", nargs="?", help='Укажите номер полета.', default="latest")
         flight_id = parser.parse_args(sys.argv[1:]).flight_id
         response = requests.get(f'https://api.spacexdata.com/v5/launches/{flight_id}')
         response.raise_for_status()

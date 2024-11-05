@@ -8,12 +8,12 @@ from dotenv import load_dotenv
 
 
 def main():
+    load_dotenv()
+    api_key = os.getenv("NASA_API_KEY")
+    if not api_key:
+        raise ValueError("Переменная окружения 'NASA_API_KEY' не найдена.")
     try:
-        load_dotenv()
-        api_key = os.getenv("NASA_API_KEY")
         number_of_images = '5'
-        if not api_key:
-            raise ValueError("Переменная окружения 'NASA_API_KEY' не найдена.")
         payload = {
             "api_key": api_key,
             'count': number_of_images
